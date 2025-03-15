@@ -15,6 +15,8 @@
             <a href="#aboutme">About me</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
+            <a href="#" id="theme-toggle">Dark Theme</a>
+
         </div>
     </div>
 
@@ -142,22 +144,44 @@
                 successModal.style.display = 'none';
             });
 
- // Intersection Observer for section animations
-    const sections = document.querySelectorAll('.home, .aboutme, .skills, .contact');
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            // Intersection Observer for section animations
+            const sections = document.querySelectorAll('.home, .aboutme, .skills, .contact');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (document.body.classList.contains('dark-theme')) {
+                    document.body.classList.remove('dark-theme');
+                    document.querySelector('.header').classList.remove('dark-theme');
+                    document.querySelectorAll('.nav a').forEach(link => link.classList.remove('dark-theme'));
+                    document.querySelector('.footer').classList.remove('dark-theme');
+                    document.querySelector('.content').classList.remove('dark-theme');
+                    sections.forEach(section => section.classList.remove('dark-theme'));
+                    themeToggle.textContent = 'Dark Theme';
                 } else {
-                    entry.target.classList.remove('visible');
+                    document.body.classList.add('dark-theme');
+                    document.querySelector('.header').classList.add('dark-theme');
+                    document.querySelectorAll('.nav a').forEach(link => link.classList.add('dark-theme'));
+                    document.querySelector('.footer').classList.add('dark-theme');
+                    document.querySelector('.content').classList.add('dark-theme');
+                    sections.forEach(section => section.classList.add('dark-theme'));
+                    themeToggle.textContent = 'Light Theme';
                 }
             });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
         });
     </script>
 </body>
