@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Portfolio</h1>
+        <div class="nav">
+            <a href="#home">Home</a>
+            <a href="#aboutme">About me</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div id="home" class="home">
+            <div class="home-image">
+                <img src="image.jpeg" alt="profile image" />
+            </div>
+            <div class="home-text">
+                <h2>Home</h2>
+                <p>Hello, I am a web developer passionate about creating unique digital experiences.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, harum porro ad deserunt beatae quasi eaque delectus voluptas reprehenderit consequatur. Nisi itaque eaque fuga rerum quibusdam nihil hic distinctio repellat?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, harum porro ad deserunt beatae quasi eaque delectus voluptas reprehenderit consequatur. Nisi itaque eaque fuga rerum quibusdam nihil hic distinctio repellat?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, harum porro ad deserunt beatae quasi eaque delectus voluptas reprehenderit consequatur. Nisi itaque eaque fuga rerum quibusdam nihil hic distinctio repellat?</p>
+            </div>
+        </div>
+
+        <div id="aboutme" class="aboutme">
+            <h2>About me</h2>
+            <p>I have experience working with various technologies and frameworks to build responsive and dynamic web applications.</p>
+            <h2>Projects</h2>
+            <p>Here are some of my projects repositories:</p>
+            <select name="projects" id="projects">
+                <option value="" disabled selected>Select a project</option>
+                <option value="https://github.com/AlomariKa/HMS">HMS project repository</option>
+                <option value="https://github.com/marianajbb/firstProject">Python codes examples</option>
+            </select>
+        </div>
+
+        <div id="skills" class="skills">
+            <h2>Skills</h2>
+            <p>Here are some of my skills:</p>
+            <ul id="skills-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li class="more-skills">React</li>
+                <li class="more-skills">Node.js</li>
+                <li class="more-skills">Python</li>
+                <li class="more-skills">MongoDB</li>
+                <li class="more-skills">Django</li>
+                <li class="more-skills">MySQL</li>
+            </ul>
+            <button class="button" id="toggle-skills">See more</button>
+        </div>
+        <div id="contact" class="contact">
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required placeholder="Please type a name"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required placeholder="Please type email"><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" required placeholder="Please type a message"></textarea><br>
+                <input type="submit" value="Submit">
+                <p id="form-error" style="color: red; display: none;">Please fill out all fields correctly.</p>
+            </form>
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+        <p class="space-p">Developed by Mariana Bastardo</p>
+    </div>
+
+        <!-- Modal for form submission success -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <h2>Success!</h2>
+                <p>Your message has been sent successfully.</p>
+                <button id="close-modal">Close</button>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectSelect = document.getElementById('projects');
+
+            projectSelect.addEventListener('change', (event) => {
+                const url = event.target.value;
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+
+            const toggleSkillsButton = document.getElementById('toggle-skills');
+            const moreSkills = document.querySelectorAll('.more-skills');
+
+            toggleSkillsButton.addEventListener('click', () => {
+                moreSkills.forEach(skill => {
+                    skill.style.display = skill.style.display === 'none' || skill.style.display === '' ? 'list-item' : 'none';
+                });
+                toggleSkillsButton.textContent = toggleSkillsButton.textContent === 'See more' ? 'See less' : 'See more';
+            });
+
+            // Initially hide the additional skills
+            moreSkills.forEach(skill => skill.style.display = 'none');
+
+            // Form validation
+            const contactForm = document.getElementById('contact-form');
+            const formError = document.getElementById('form-error');
+            const successModal = document.getElementById('success-modal');
+            const closeModalButton = document.getElementById('close-modal');
+
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (name === '' || email === '' || !emailPattern.test(email) || message === '') {
+                    formError.style.display = 'block';
+                } else {
+                    formError.style.display = 'none';
+                    // Show the success modal
+                    successModal.style.display = 'flex';
+                    contactForm.reset();
+                }
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                successModal.style.display = 'none';
+            });
+
+ // Intersection Observer for section animations
+    const sections = document.querySelectorAll('.home, .aboutme, .skills, .contact');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        });
+    </script>
+</body>
+</html>
