@@ -417,3 +417,80 @@ img {
     transform: translateY(0);
 }
 
+
+
+/* Dark theme styles */
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.header.dark-theme {
+    background-color: #1e1e1e;
+}
+
+.nav a.dark-theme {
+    color: #ffffff;
+}
+
+.footer.dark-theme {
+    background-color: #1e1e1e;
+}
+
+.content.dark-theme {
+    background-color: #1e1e1e;
+}
+
+.home.dark-theme, .aboutme.dark-theme, .skills.dark-theme, .contact.dark-theme {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.home.dark-theme p, .aboutme.dark-theme p, .skills.dark-theme p, .contact.dark-theme p {
+    color: #ffffff;
+}
+
+.home.dark-theme h2, .aboutme.dark-theme h2, .skills.dark-theme h2, .contact.dark-theme h2 {
+    color: #ffffff;
+}
+
+.home.dark-theme select, .aboutme.dark-theme select, .skills.dark-theme select, .contact.dark-theme select {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+.home.dark-theme input, .aboutme.dark-theme input, .skills.dark-theme input, .contact.dark-theme input,
+.home.dark-theme textarea, .aboutme.dark-theme textarea, .skills.dark-theme textarea, .contact.dark-theme textarea {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+.skills.dark-theme ul {
+    color: black;
+}
+.home.dark-theme input[type="submit"], .aboutme.dark-theme input[type="submit"], .skills.dark-theme input[type="submit"], .contact.dark-theme input[type="submit"] {
+    background-color: lightseagreen;
+    color: #ffffff;
+    border: none;
+}
+
+.home.dark-theme input[type="submit"]:hover, .aboutme.dark-theme input[type="submit"]:hover, .skills.dark-theme input[type="submit"]:hover, .contact.dark-theme input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-theme .modal-content {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.contact.dark-theme form label{
+    color: #ffffff;
+}
+
